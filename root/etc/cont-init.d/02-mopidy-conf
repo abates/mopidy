@@ -1,0 +1,11 @@
+#!/usr/bin/with-contenv sh
+
+CONF_FILE=/etc/mopidy/mopidy.conf
+cat /etc/mopidy/base.conf > $CONF_FILE
+
+if [ ! -z "$AUDIO_OUTPUT" ]; then
+  echo >> $CONF_FILE
+  echo "[audio]" >> $CONF_FILE
+  echo "output = $AUDIO_OUTPUT" >> $CONF_FILE
+fi
+

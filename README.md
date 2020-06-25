@@ -1,2 +1,2 @@
-# mopidy
-Docker container for mopidy
+# adb-server
+Basic ADB Server Docker image

@@ -1,0 +1,9 @@
+#!/usr/bin/with-contenv sh
+
+CONF_FILES=$(find /config -name "*.conf"|paste -sd ":")
+
+if [ -z $CONF_FILES ]; then
+  /usr/bin/mopidyctl --config /etc/mopidy/mopidy.conf 
+else
+  /usr/bin/mopidyctl --config /etc/mopidy/mopidy.conf:$CONF_FILES
+fi
