@@ -12,7 +12,7 @@ RUN /tmp/download.sh \
     && pip install Mopidy-Mpd \
     && pip install Mopidy-Local \
     && pip install Mopidy-Iris \
-    && pip install git+http://github.com/abates/mopidy-pandora@mopidy-3
+    && pip install git+http://github.com/abates/mopidy-pandora@mopidy-3 \
     && mkdir -p /config /data/cache /data/data /data/local /data/log /data/media /data/playlists
 
 COPY root/ /
