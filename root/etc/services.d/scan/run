@@ -2,5 +2,6 @@
 
 echo "Scanning"
 /usr/bin/mopidyctl --config /etc/mopidy/mopidy.conf local scan
-sleep 60
+# run once an hour
+sleep 3600
 
