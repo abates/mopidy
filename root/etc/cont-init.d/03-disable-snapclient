@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv sh
+
+if [ "$DISABLE_LOCAL" == "yes" ] ; then
+  touch /etc/services.d/snapclient/down
+else
+  rm -f /etc/services.d/snapclient/down
+fi

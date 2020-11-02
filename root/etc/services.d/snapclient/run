@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv sh
+
+if [ -z $AUDIO_OUTPUT ] ; then
+  snapclient -h localhost | grep -v "[Info]" | grep -v "[Notice]"
+else
+  snapclient -h localhost -s $AUDIO_OUTPUT | grep -v "[Info]" | grep -v "[Notice]"
+fi

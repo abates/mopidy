@@ -1,19 +1,20 @@
-FROM alpine:edge
+FROM alpine:3.12
 ARG BUILDPLATFORM
 ARG TARGETARCH
 
 ADD download.sh /tmp
-RUN /tmp/download.sh \
-    && apk update \
+RUN sed -e 's;^#http\(.*\)/\([^/]\+\)/community;http\1/\2/community;g' -i /etc/apk/repositories
+RUN apk update \
     && apk upgrade \
     && apk add git mopidy alsa-utils alsa-lib alsaconf py3-pip snapcast-client snapcast-server shadow gst-plugins-bad gst-plugins-base \
-    && tar xzf /tmp/s6overlay.tar.gz -C / \
-    && rm /tmp/s6overlay.tar.gz \
     && pip install Mopidy-Mpd \
     && pip install Mopidy-Local \
     && pip install Mopidy-Iris \
+    && pip install git+http://github.com/abates/mopidy-pandora@issue-74 \
+    && /tmp/download.sh \
+    && tar xzf /tmp/s6overlay.tar.gz -C / \
+    && rm /tmp/s6overlay.tar.gz 
     #&& pip install git+https://github.com/mopidy/mopidy-pandora \
-    && pip install git+http://github.com/abates/mopidy-pandora@issue-74
 
 COPY root/ /
 
@@ -28,6 +29,9 @@ ENV AUDIO_GID ""
 
 # Audio output config variable
 ENV AUDIO_OUTPUT ""
+
+# Disable Local Sound
+ENV DISABLE_LOCAL "false"
 
 # 1704     - snapcast stream
 # 1705/tcp - snapcast tcp rpc

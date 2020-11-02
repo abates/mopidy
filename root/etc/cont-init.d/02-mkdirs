@@ -1,0 +1,18 @@
+#!/usr/bin/with-contenv sh
+
+mkdir -p /config \
+         /data/mopidy/cache \
+         /data/mopidy/data \
+         /data/media \
+         /data/playlists \
+         /data/local \
+         /data/log \
+         /data/log/snapserver \
+         /data/log/avahi \
+         /data/log/snapclient \
+         /data/log/shairport-sync \
+         /data/log/dbus \
+         /data/snapserver 
+
+chown -R mopidy:mopidy /data
+chown -R nobody:nogroup /data/log/snapserver /data/log/avahi /data/log/snapclient /data/log/shairport-sync /data/log/dbus
